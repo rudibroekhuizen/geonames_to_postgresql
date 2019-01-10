@@ -34,7 +34,7 @@ DBUSER="postgres"
 FILES="allCountries.zip alternateNames.zip userTags.zip admin1CodesASCII.txt admin2Codes.txt countryInfo.txt featureCodes_en.txt iso-languagecodes.txt timeZones.txt"
 psql -U $DBUSER -h $DBHOST -p $DBPORT -c "CREATE DATABASE geonames WITH TEMPLATE = template0 ENCODING = 'UTF8';"
 psql -U $DBUSER -h $DBHOST -p $DBPORT geonames <<EOT
-DROP TABLE geoname CASCADE;
+DROP TABLE IF EXISTS geoname CASCADE;
 CREATE TABLE geoname (
     geonameid      INT,
     name           VARCHAR(200),
@@ -57,7 +57,7 @@ CREATE TABLE geoname (
     moddate        DATE
 );
 
-DROP TABLE alternatename;
+DROP TABLE IF EXISTS alternatename;
 CREATE TABLE alternatename (
     alternatenameId INT,
     geonameid       INT,
@@ -69,7 +69,7 @@ CREATE TABLE alternatename (
 		isHistoric SMALLINT
 );
 
-DROP TABLE countryinfo;
+DROP TABLE IF EXISTS countryinfo;
 CREATE TABLE "countryinfo" (
     iso_alpha2           CHAR(2),
     iso_alpha3           CHAR(3),
@@ -94,7 +94,7 @@ CREATE TABLE "countryinfo" (
 
 
 
-DROP TABLE iso_languagecodes;
+DROP TABLE IF EXISTS iso_languagecodes;
 CREATE TABLE iso_languagecodes(
     iso_639_3     CHAR(4),
     iso_639_2     VARCHAR(50),
@@ -103,7 +103,7 @@ CREATE TABLE iso_languagecodes(
 );
 
 
-DROP TABLE admin1CodesAscii;
+DROP TABLE IF EXISTS admin1CodesAscii;
 CREATE TABLE admin1CodesAscii (
     code      CHAR(20),
     name      TEXT,
@@ -111,7 +111,7 @@ CREATE TABLE admin1CodesAscii (
     geonameid INT
 );
 
-DROP TABLE admin2CodesAscii;
+DROP TABLE IF EXISTS admin2CodesAscii;
 CREATE TABLE admin2CodesAscii (
     code      CHAR(80),
     name      TEXT,
@@ -119,14 +119,14 @@ CREATE TABLE admin2CodesAscii (
     geonameid INT
 );
 
-DROP TABLE featureCodes;
+DROP TABLE IF EXISTS featureCodes;
 CREATE TABLE featureCodes (
     code        CHAR(7),
     name        VARCHAR(200),
     description TEXT
 );
 
-DROP TABLE timeZones;
+DROP TABLE IF EXISTS timeZones;
 CREATE TABLE timeZones (
 		countryCode VARCHAR(4),
     timeZoneId VARCHAR(200),
@@ -135,14 +135,14 @@ CREATE TABLE timeZones (
     raw_offset REAL
 );
 
-DROP TABLE continentCodes;
+DROP TABLE IF EXISTS continentCodes;
 CREATE TABLE continentCodes (
     code      CHAR(2),
     name      VARCHAR(20),
     geonameid INT
 );
 
-DROP TABLE postalcodes;
+DROP TABLE IF EXISTS postalcodes;
 CREATE TABLE postalcodes (
     countrycode CHAR(2),
     postalcode  VARCHAR(20),
