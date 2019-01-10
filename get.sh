@@ -82,7 +82,7 @@ CREATE TABLE "countryinfo" (
     continent            CHAR(2),
     tld                  CHAR(10),
     currency_code        CHAR(3),
-    currency_name        CHAR(15),
+    currency_name        CHAR(20),
     phone                CHARACTER VARYING(20),
     postal               CHARACTER VARYING(60),
     postalRegex          CHARACTER VARYING(200),
